@@ -29,8 +29,7 @@ A student management system built using Django Framework. It is Designed for Int
 - New Students and Teachers can be added through the Admin page. A New user needs to be
   created for each.(Because you not able to Register on frontend side)
 
-- Thank you for assigned me this project, Im submited my Assignment along with Database
-  (db.sqlite3) & I hope to have the Opportunity to work for you. 
+- Project, Im submited along with Database(db.sqlite3). 
 
 
 
