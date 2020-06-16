@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="card mb-3">
+    <fieldset class='form-group' align='center'>
+      <legend class='border-bottom mb-2'>
+          <h3 align='center'>Marks</h3>
+      </legend>                    
+    </fieldset>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th>Student No</th>
+                <th>Student name</th>
+                <th>Prelims exam</th>
+                <th>Final exam</th>
+                <th>Assignment</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sc in sc_list %}
+            <tr>
+                <th>{{ sc.class_id }}</th>
+                <th>{{ request.user.student.name }}</th>
+                {% for m in sc.marks_set.all %}
+                    <th>{{ m.marks1 }}</th>
+                {% endfor %}
+            </tr>
+            {% empty %}
+                    <p align='center'>Student has No Exams</p>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

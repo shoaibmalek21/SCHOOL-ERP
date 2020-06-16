@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    
+<div class="card mb-3">
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <fieldset class='form-group' align='center'>
+                    <legend class='border-bottom mb-2'>
+                            <h3 align='center'>Your List of Classes</h3>
+                    </legend>
+                    <tr>
+                        <th>Class</th>
+                        <th>Department</th>
+                    </tr>
+                </fieldset>
+
+                <tbody>
+                    {% for ass in teacher1.assign_set.all %}
+                    <tr>
+                        <th>{{ ass.class_id }}</th>
+                        <th>{{ ass.dept }}</th>
+                        <td>
+                            {% if choice == 1 %}
+                                <a class="w3-bar-item w3-button w3-hide-small  w3-hover-green" href="{% url 'teacher_class_date' ass.id %}" role="button">Enter Attendance</a>
+                                <a class="w3-bar-item w3-button w3-hide-small w3-hover-red" href="{% url 'my_students' ass.id %}">View Students</a>
+
+                            {% elif choice == 2 %}
+                                <a class="w3-bar-item w3-button w3-hide-small  w3-hover-blue" href="{% url 'teacher_marks_list' ass.id %}" role="button">Enter Marks</a>
+                                <a class="w3-bar-item w3-button w3-hide-small  w3-hover-red" href="{% url 'teacher_student_marks' ass.id %}">View Students</a>                                
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    {% empty %}
+                            <p align='center'>Teacher has No Class</p>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class='border-top  pt-3' align="right">
+            <small class="text-muted">_</small>
+        </div>      
+</div>
+{% endblock %}

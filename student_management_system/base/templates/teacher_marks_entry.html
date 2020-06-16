@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if c.student_set.all %}
+
+<form action="{% url 'marks_confirm' mc.id %}" method="post">
+    {% csrf_token %}
+    <div class="card mb-3">
+        
+        <fieldset class='form-group' align='center'>
+          <legend class='border-bottom mb-2'>
+              <h3 align='center'>Enter Marks</h3>
+          </legend>                    
+        </fieldset>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Total Marks</th>
+                    <th>Enter Marks</th>
+                </tr>
+              </thead>
+                <tbody>
+                {% for s in c.student_set.all %}
+                    <tr>
+                    <th>{{s.name}}</th>
+                    <th>{{ mc.total_marks }}</th>
+                    <th>
+                        <input type="number" name="{{ s.sno }}" min="0" max="{{ mc.total_marks }}" value="0">
+                    </th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class='border-top  pt-3' align="right">
+          <small class="text-muted">_</small>
+      </div>   
+      <div align='center'>
+        <input class="btn btn-success btn-lg" type="submit" value="Submit">
+      </div>
+      <div class='border-top  pt-3' align="right">
+        <small class="text-muted">_</small>
+      </div>   
+</form>
+
+{% else %}
+    <p align='center'>No students in Class</p>
+{% endif %}
+
+{% endblock %}

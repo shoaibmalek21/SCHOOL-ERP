@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3">
+        <fieldset class='form-group' align='center'>
+            <legend class='border-bottom mb-2'>
+                <h3 align='center'>Attendance</h3>
+            </legend>                       
+        </fieldset>
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in att_list %}
+                    <tr>
+                        <th>{{ a.date }}</th>
+                        {% if a.status == 0 %}
+                            <th class="p-3 mb-2 bg-danger text-white">Not Marked</th>
+                            <th>
+                                <a class="w3-bar-item w3-button w3-hide-small  w3-hover-green" href="{% url 'teacher_attendance' a.id %}" role="button">Enter Attendance</a>
+                                <a class="w3-bar-item w3-button w3-hide-small  w3-hover-red" href="{% url 'cancel_class' a.id %}">Cancel Class</>
+                            </th>
+
+                        {% elif a.status == 1 %}
+                            <th class="p-3 mb-2 bg-success text-white">Marked</th>
+                            <th><a class="w3-bar-item w3-button w3-hide-small  w3-hover-yellow" href="{% url 'edit_attendance' a.id %}" role="button">Edit Attendance</a> </th>
+
+                        {% else %}
+                            <th class="p-3 mb-2 bg-warning text-white">Cancelled</th>
+                            <th><a class="w3-bar-item w3-button w3-hide-small  w3-hover-green" href="" role="button">No Attendance</a></th>
+                        {% endif %}
+                    </tr>
+                    {% empty %}
+                            <p align ='center'>Student has No Classes</p>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class='border-top  pt-3' align="right">
+           <small class="text-muted">_</small>
+        </div>  
+    </div>
+</div>
+{% endblock %}

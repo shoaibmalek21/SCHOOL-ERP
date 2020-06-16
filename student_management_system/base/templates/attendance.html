@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="card mb-3">
+            <fieldset class='form-group' align='center'>
+              <legend class='border-bottom mb-2'>
+                  <h3 align='center'>Attendance</h3>
+              </legend>                    
+            </fieldset>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                  <thead class="thead-light ">
+                    <tr>
+                        <th>Standard</th>
+                        <th>Steam</th>
+                        <th>Attended classes</th>
+                        <th>Total classes</th>
+                        <th>Attendance %</th>
+                        <th>Attendance Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for a in att_list %}
+                    <tr>
+                        <th>{{ a.class_id }}</th>
+                        <th>{{a.class_id.dept}}</a></th>
+                        <th>{{ a.attendance_class }}</th>
+                        <th>{{ a.total_class }}</th>
+                        <th>{{ a.attendance }}</th>
+                        <th><a class="w3-bar-item w3-button w3-hide-small  w3-hover-green" href="{% url 'attendance_detail' a.student.sno a.class_id.id %}" role="button">View</a></th>                        
+                    </tr>
+                    {% empty %}
+                            <p align='center'>Student has No Classes</p>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+
+{% endblock %}
