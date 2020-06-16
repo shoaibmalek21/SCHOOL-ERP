@@ -1,10 +1,8 @@
-##############################
-###############
+#############################################
 Welcome to My student ERP Application
 
 Email :- "Shoaibmalek21@gmail.com"
-##############################
-###############
+#############################################
 
 A student management system built using Django Framework. It is Designed for Interactions between students and teachers. Features include Attendance and Marks.
 
